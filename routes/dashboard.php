@@ -1,17 +1,16 @@
 <?php 
 session_start();
  if(!isset($_SESSION['userdata'])){
-    header("location: ../")
+    header("location: ../");
  }
 
  
  $userdata = $_SESSION['userdata'];
  $groupsdata = $_SESSION['groupsdata'];
 
- if($_SESSION['status'])==0{
+ if($_SESSION['userdata']['status']==0){
     $status = '<b style="color:red">Not Voted</b>';
- }
- else{
+ } else {
     $status = '<b style="color:green">Voted</b>';
  }
 ?>
@@ -90,6 +89,7 @@ session_start();
             <button id="logoutbtn"><a href="logout.php"><button id="logoutbtn">Logout</button></a>Logout</button>
             <h1>Online Voting System</h1>
         </div>
+        <a href="results.php">View Election Results</a>
         </center>
         <hr>
 
@@ -117,15 +117,15 @@ session_start();
                     <form action="../api/vote.php" method="POST">
                         <input type="hiddenn" name="gvotes" value=" <?php echo $groupsdata[$i]['votes'] ?>">
                         <input type="hiddenn" name="gid" value=" <?php echo $groupsdata[$i]['id'] ?>">
-                         <?php {
-                         if($_SESSION['userdata']['status']==0)
+                         <?php 
+                         if($_SESSION['userdata']['status']==0){
                             ?>
                             <input type="submit" name="votebtn" value="Vote" id="votebtn">
                             <?php
                          }
                          else{
                          ?>
-                        <button disabled type="submit" name="votebtn" value="Vote" ></button></button>
+                        <button disabled type="submit" name="votebtn" value="Vote"></button>
                         <?php 
                         }
                         ?>
@@ -140,13 +140,13 @@ session_start();
             }
             ?>
 
-        </div>
-        </div>
+    
+    
 
         
 
 
-    </div>
+    
 
     </body>
 </html>
