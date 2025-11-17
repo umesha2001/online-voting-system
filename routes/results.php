@@ -34,7 +34,7 @@ $groupsdata = mysqli_fetch_all($groups, MYSQLI_ASSOC);
                 <tr>
                     <td><?php echo htmlspecialchars($candidate['name']); ?></td>
                     <td><?php echo htmlspecialchars($candidate['votes']); ?></td>
-                    <td><img src="<?php echo htmlspecialchars($candidate['photo']); ?>" alt="<?php echo htmlspecialchars($candidate['name']); ?>" width="50"></td>
+                    <td><img src="../uploads/<?php echo htmlspecialchars($candidate['photo']); ?>" alt="<?php echo htmlspecialchars($candidate['name']); ?>" width="50"></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>

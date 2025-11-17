@@ -6,7 +6,7 @@ session_start();
 
  
  $userdata = $_SESSION['userdata'];
- $groupsdata = $_SESSION['groupsdata'];
+ $groupsdata = isset($_SESSION['groupsdata']) ? $_SESSION['groupsdata'] : [];
 
  if($_SESSION['userdata']['status']==0){
     $status = '<b style="color:red">Not Voted</b>';
@@ -85,8 +85,8 @@ session_start();
     <div id="mainSection">
         <center>
         <div id="headerSection">
-            <button id="backbtn"><a href="../"></a>Back</button>
-            <button id="logoutbtn"><a href="logout.php"><button id="logoutbtn">Logout</button></a>Logout</button>
+            <a href="../"><button id="backbtn">Back</button></a>
+            <a href="logout.php"><button id="logoutbtn">Logout</button></a>
             <h1>Online Voting System</h1>
         </div>
         <a href="results.php">View Election Results</a>
@@ -97,7 +97,7 @@ session_start();
 
         </div>
         <div id="mainpanel">
-        <div id="profile">
+        <div id="Profile">
             <img src="../uploads/<?php echo $userdata['photo'] ?>" height="100" width="100">
             <b>Name:</b> <?php echo $userdata['name']?> <br><br>
             <b>Mobile:</b> <?php echo $userdata['mobile']?> <br><br>
@@ -107,16 +107,16 @@ session_start();
 
         <div id="Group">
             <?php 
-            if($_SESSION['groupsdata']){
+            if(isset($_SESSION['groupsdata']) && count($groupsdata) > 0){
                 for ($i=0; $i<count($groupsdata); $i++){
                  ?>
                  <div>
                     <img style="float: right" src="../uploads/<?php echo $groupsdata[$i]['photo']?>" height="100" width="100">
-                    <>Group Name: </b> <?php echo $groupsdata[$i]['name']?> <br><br>
+                    <b>Group Name: </b> <?php echo $groupsdata[$i]['name']?> <br><br>
                     <b>Votes: </b> <?php echo $groupsdata[$i]['votes']?> <br><br>
                     <form action="../api/vote.php" method="POST">
-                        <input type="hiddenn" name="gvotes" value=" <?php echo $groupsdata[$i]['votes'] ?>">
-                        <input type="hiddenn" name="gid" value=" <?php echo $groupsdata[$i]['id'] ?>">
+                        <input type="hidden" name="gvotes" value="<?php echo $groupsdata[$i]['votes'] ?>">
+                        <input type="hidden" name="gid" value="<?php echo $groupsdata[$i]['id'] ?>">
                          <?php 
                          if($_SESSION['userdata']['status']==0){
                             ?>
