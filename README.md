@@ -114,8 +114,22 @@ online-voting-system/
 │   ├── logout.php        # Logout handler
 │   ├── register.html     # Registration form
 │   └── results.php       # Election results page
+├── tests/                # Test suite
+│   ├── Integration/      # Integration tests
+│   ├── Unit/             # Unit tests
+│   ├── DatabaseTestCase.php
+│   ├── bootstrap.php
+│   └── README.md
 ├── uploads/              # User uploaded photos
 ├── database.sql          # Database schema
+├── composer.json         # Dependencies
+├── phpunit.xml           # Test configuration
+├── test-report.html      # Visual test report
+├── TESTING_GUIDE.md      # Complete testing guide
+├── TEST_CASES.md         # All test cases
+├── TESTING_QUICKREF.md   # Quick reference
+├── setup-tests.bat       # Test setup script
+├── run-tests.bat         # Test runner script
 └── index.html            # Login page
 ```
 
@@ -153,6 +167,54 @@ Shows all candidates and their vote counts
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
+
+## Testing
+
+This project includes a comprehensive test suite with 34 tests covering all major functionality.
+
+### Quick Start Testing
+
+1. **Setup Tests**
+   ```cmd
+   setup-tests.bat
+   ```
+
+2. **Run All Tests**
+   ```cmd
+   run-tests.bat
+   ```
+   Or:
+   ```cmd
+   composer test
+   ```
+
+3. **View Test Report**
+   - Open `test-report.html` in your browser for a visual overview
+
+### Test Coverage
+- ✅ **6 Registration Tests** - User signup, duplicates, roles
+- ✅ **8 Login Tests** - Authentication, validation, role-based access
+- ✅ **8 Voting Tests** - Vote casting, counting, double-voting prevention
+- ✅ **12 Unit Tests** - Database, validation, business logic
+
+### Testing Documentation
+- 📖 **TESTING_GUIDE.md** - Complete setup and usage guide
+- 📋 **TEST_CASES.md** - Detailed list of all test cases
+- 🚀 **TESTING_QUICKREF.md** - Quick reference card
+
+### Running Specific Tests
+```cmd
+# Registration tests
+vendor\bin\phpunit tests\Integration\RegistrationTest.php
+
+# Login tests
+vendor\bin\phpunit tests\Integration\LoginTest.php
+
+# Voting tests
+vendor\bin\phpunit tests\Integration\VotingTest.php
+```
+
+For more details, see the [Testing Guide](TESTING_GUIDE.md).
 
 ## License
 
