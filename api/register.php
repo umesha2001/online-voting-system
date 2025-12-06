@@ -8,12 +8,24 @@ $cpassword = $_POST['cpassword'];
 $address = $_POST['address'];
 $role = $_POST['role'];
 
-// Check if photo is uploaded
+// Check if photo is uploaded and handle errors/validation
 $image = '';
-if(isset($_FILES['photo']) && $_FILES['photo']['error'] == 0){
+if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
    $tmp_name = $_FILES['photo']['tmp_name'];
-   $image = $_FILES['photo']['name'];
-   move_uploaded_file($tmp_name, "../uploads/$image");
+   $original_name = basename($_FILES['photo']['name']);
+   $ext = strtolower(pathinfo($original_name, PATHINFO_EXTENSION));
+   $allowed = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+   if (!in_array($ext, $allowed)) {
+      echo '<script>alert("Invalid file type. Only images are allowed."); window.location = "../routes/register.html";</script>';
+      exit();
+   }
+   // Prevent empty file name and collisions
+   $image = uniqid('photo_', true) . '.' . $ext;
+   $upload_path = dirname(__DIR__) . '/uploads/' . $image;
+   if (!move_uploaded_file($tmp_name, $upload_path)) {
+      echo '<script>alert("Failed to upload photo. Check folder permissions."); window.location = "../routes/register.html";</script>';
+      exit();
+   }
 }
 
 if($password==$cpassword){

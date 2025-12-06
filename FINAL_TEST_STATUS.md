@@ -14,6 +14,7 @@
 ### Integration Tests (22 tests)
 
 #### Login Tests (8 tests) ✅
+
 - ✓ Successful voter login
 - ✓ Successful candidate login
 - ✓ Login with invalid mobile
@@ -24,6 +25,7 @@
 - ✓ Login with empty credentials
 
 #### Registration Tests (6 tests) ✅
+
 - ✓ Successful registration
 - ✓ Duplicate mobile registration
 - ✓ Voter registration
@@ -32,6 +34,7 @@
 - ✓ Multiple users registration
 
 #### Voting Tests (8 tests) ✅
+
 - ✓ Successful voting
 - ✓ Voter cannot vote twice
 - ✓ Vote count increment
@@ -44,10 +47,12 @@
 ### Unit Tests (12 tests)
 
 #### Database Connection Tests (2 tests) ✅
+
 - ✓ Database connection parameters
 - ✓ MySQL connection
 
 #### Validation Tests (10 tests) ✅
+
 - ✓ Password match
 - ✓ Password mismatch
 - ✓ Valid mobile format
@@ -64,26 +69,31 @@
 ## 🔧 Issues Fixed
 
 ### ✅ Fixed: Missing vendor/autoload.php
+
 **Problem:** Tests required Composer autoload which wasn't installed  
 **Solution:** Removed autoload requirement, tests now work standalone  
 **Files Modified:** `tests/bootstrap.php`
 
 ### ✅ Fixed: Namespace Issues
+
 **Problem:** Namespaces caused class loading errors  
 **Solution:** Removed namespaces, using direct class loading  
 **Files Modified:** All test files
 
 ### ✅ Fixed: mysqli Exceptions
+
 **Problem:** Duplicate entry test threw unhandled exception  
 **Solution:** Disabled mysqli exceptions in DatabaseTestCase setup  
 **Files Modified:** `tests/DatabaseTestCase.php`, `tests/Integration/RegistrationTest.php`
 
 ### ✅ Fixed: assertNotMatchesRegularExpression
+
 **Problem:** Method not available in PHPUnit 9.5  
 **Solution:** Used alternative assertion method  
 **Files Modified:** `tests/Unit/ValidationTest.php`
 
 ### ✅ Fixed: PHP Extensions
+
 **Problem:** System PHP missing required extensions  
 **Solution:** Using XAMPP PHP with all extensions enabled  
 **Files Modified:** Created `run-phpunit-tests.bat`
@@ -93,26 +103,33 @@
 ## 🚀 How to Run Tests
 
 ### Method 1: Batch File (Recommended)
+
 ```cmd
 run-phpunit-tests.bat
 ```
+
 Double-click or run from command prompt.
 
 ### Method 2: Command Line
+
 ```cmd
 C:\xampp\php\php.exe phpunit.phar --no-configuration tests
 ```
 
 ### Method 3: Manual Test Script
+
 ```cmd
 C:\xampp\php\php.exe manual-test.php
 ```
+
 Runs 10 basic tests without PHPUnit.
 
 ### Method 4: Quick Test
+
 ```cmd
 .\quick-test.bat
 ```
+
 Runs simplified manual tests.
 
 ---
@@ -120,6 +137,7 @@ Runs simplified manual tests.
 ## 📁 Test Files
 
 ### PHPUnit Tests
+
 - `tests/bootstrap.php` - Test initialization
 - `tests/DatabaseTestCase.php` - Base class for DB tests
 - `tests/Integration/LoginTest.php` - 8 login tests
@@ -129,11 +147,13 @@ Runs simplified manual tests.
 - `tests/Unit/ValidationTest.php` - 10 validation tests
 
 ### Test Runners
+
 - `run-phpunit-tests.bat` - PHPUnit test runner ⭐
 - `manual-test.php` - Standalone test script
 - `quick-test.bat` - Quick manual test runner
 
 ### Configuration
+
 - `phpunit.xml` - PHPUnit configuration
 - `phpunit.phar` - PHPUnit executable
 
@@ -143,17 +163,20 @@ Runs simplified manual tests.
 
 You see red squiggly lines in VS Code showing "Undefined method" errors. **This is normal and can be ignored!**
 
-### Why This Happens:
+### Why This Happens
+
 - VS Code's PHP IntelliSense doesn't have PHPUnit type information
 - We're using standalone PHPUnit (phpunit.phar) not Composer
 - The IDE can't find PHPUnit class definitions
 
-### Why It's Not a Problem:
+### Why It's Not a Problem
+
 - ✅ **Tests run successfully** - All 34 tests pass
 - ✅ **PHPUnit works perfectly** - Runtime execution is fine
 - ✅ **Code is correct** - No actual errors
 
-### How to Fix IDE Warnings (Optional):
+### How to Fix IDE Warnings (Optional)
+
 1. **Ignore them** - Tests work fine, warnings are cosmetic
 2. **Install PHP Intelephense extension** - Better PHP support
 3. **Add PHPUnit stubs** - For better IDE integration
@@ -181,7 +204,8 @@ You see red squiggly lines in VS Code showing "Undefined method" errors. **This 
 
 ## ✅ Test Coverage
 
-### Features Tested:
+### Features Tested
+
 - ✅ Database connectivity
 - ✅ User registration (all scenarios)
 - ✅ Login authentication (all scenarios)
@@ -193,7 +217,8 @@ You see red squiggly lines in VS Code showing "Undefined method" errors. **This 
 - ✅ Status tracking
 - ✅ Transaction integrity
 
-### Not Tested (Future Enhancements):
+### Not Tested (Future Enhancements)
+
 - File upload functionality (photos)
 - Session management
 - Password hashing
@@ -205,7 +230,8 @@ You see red squiggly lines in VS Code showing "Undefined method" errors. **This 
 
 ## 🎯 Continuous Testing
 
-### Daily Workflow:
+### Daily Workflow
+
 1. Start XAMPP (MySQL + Apache)
 2. Make code changes
 3. Run: `run-phpunit-tests.bat`
